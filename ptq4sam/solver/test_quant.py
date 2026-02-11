@@ -327,6 +327,16 @@ def main():
         model.CLASSES = checkpoint['meta']['CLASSES']
     else:
         model.CLASSES = dataset.CLASSES
+    if os.environ.get('SMOKE', '') == '1':
+        if len(args.save_sam_path) > 0:
+            try:
+                save_path = args.save_sam_path
+                logger.info('smoke: save sam:')
+                logger.info(save_path)
+                torch.save(model.predictor, save_path)
+            except Exception:
+                logger.info('smoke: err no save')
+        return
     if not args.fp:
         if len(args.load_sam_path) == 0:
             logger.info('quant encoder')

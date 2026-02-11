@@ -90,6 +90,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.ptq4sam/
+.ptq4sam-venv/
 
 # Spyder project settings
 .spyderproject
@@ -125,3 +127,5 @@ result/
 *.pth
 *.py~
 *.sh~
+*.onnx
+*.onnx.data

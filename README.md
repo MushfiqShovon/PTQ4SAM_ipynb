@@ -83,6 +83,30 @@ We recommend using a GPU with more than 40GB for experiments.
 If you want to visualize the prediction results, you can achieve this by specifying `--show-dir`.
 Bimodal distributions mainly occur in the `mask decoder` of SAM-B and SAM-L.
 
+## Sharing With Labmates (Notebook-First)
+This repo includes [quant_infer.ipynb](quant_infer.ipynb) which loads a saved quantized SAM predictor and runs evaluation without PTQ. By default it uses a 10-image COCO subset for quick checks.
+
+### Files to Share
+- Repo source code (this repository)
+- COCO val2017 images + annotations (or place them under `data/coco`)
+- Checkpoints in `ckpt/` (SAM + detector)
+- Quantized predictor: `result/yolox_l_vitb_w6a6/quant_sam_predictor.pth`
+- Optional ONNX: `result/yolox_l_vitb_w6a6/quant_sam_image_encoder.onnx` and `.onnx.data`
+
+### Environment Setup Options
+Option A (recommended, lighter):
+1. Create env: `conda create -n ptq4sam python=3.8 -y`
+2. Install torch/cu113: `pip install torch==1.10.2+cu113 torchvision==0.11.3+cu113 --extra-index-url https://download.pytorch.org/whl/cu113`
+3. Install MMCV: `pip install -U openmim && mim install "mmcv-full==1.7.1"`
+4. Install requirements: `pip install -r requirements.txt`
+5. Build ops and mmdet (see Create Environment above)
+
+Option B (exact pin, heavier):
+- Use `requirements/ptq4sam-freeze.txt` with `pip install -r requirements/ptq4sam-freeze.txt` after step 2.
+
+### Run the Notebook
+Open [quant_infer.ipynb](quant_infer.ipynb) and run cells top-to-bottom.
+
 ## Reference
 If you find this repo useful for your research, please consider citing the paper.
 ```
