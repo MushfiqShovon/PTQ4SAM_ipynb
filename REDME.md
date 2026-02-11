@@ -5,7 +5,7 @@ The notebook will auto-download the quantized predictor if it is missing.
 
 ## 1) Clone the repo
 ```
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/MushfiqShovon/PTQ4SAM_ipynb.git
 cd PTQ4SAM/PTQ4SAM
 ```
 
