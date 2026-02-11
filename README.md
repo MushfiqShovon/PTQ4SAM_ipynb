@@ -1,11 +1,11 @@
 # Labmate Quickstart (Notebook)
 
 This repo is set up to run the quantized SAM evaluation from the notebook.
-The notebook will auto-download the quantized predictor if it is missing.
+The notebook auto-downloads the quantized predictor if it is missing.
 
 ## 1) Clone the repo
 ```
-git clone https://github.com/MushfiqShovon/PTQ4SAM_ipynb.git
+git clone <YOUR_GITHUB_REPO_URL>
 cd PTQ4SAM/PTQ4SAM
 ```
 
@@ -20,7 +20,18 @@ mim install "mmcv-full==1.7.1"
 pip install -r requirements.txt
 ```
 
-Build ops + mmdet:
+Optional (exact environment pin):
+```
+pip install -r requirements/ptq4sam-freeze.txt
+```
+
+## 3) Run the notebook
+Open `quant_infer.ipynb` and run cells top-to-bottom.
+- The notebook will download COCO val2017 + annotations if missing.
+- The quantized predictor is downloaded automatically from Google Drive.
+
+## Notes
+- If you see missing CUDA ops or mmdet build errors, then build them:
 ```
 cd projects/instance_segment_anything/ops
 python setup.py build install
@@ -30,22 +41,3 @@ cd mmdetection
 python setup.py build develop
 cd ..
 ```
-
-Optional (exact environment pin):
-```
-pip install -r requirements/ptq4sam-freeze.txt
-```
-
-## 3) Prepare data + checkpoints
-- Put COCO val2017 under `data/coco` (annotations + val2017 images)
-- Put required detector weights under `ckpt/` (YOLOX-L)
-
-## 4) Run the notebook
-Open `quant_infer.ipynb` and run cells top-to-bottom.
-The notebook will download the quantized predictor if it is missing:
-- Google Drive file id: 103Y5SadTarO4obWzNnWb0jVDnVzrGn3j
-
-## Notes
-- The notebook defaults to a 10-image COCO subset for faster checks.
-- The quantized predictor is stored at:
-  `result/yolox_l_vitb_w6a6/quant_sam_predictor.pth`
