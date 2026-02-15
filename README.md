@@ -1,4 +1,4 @@
-# Labmate Quickstart (Notebook)
+# Quickstart (Notebook)
 
 This repo is set up to run the quantized SAM evaluation from the notebook.
 The notebook auto-downloads the quantized predictor if it is missing.
